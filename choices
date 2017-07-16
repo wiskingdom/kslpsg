@@ -1,0 +1,207 @@
+
+version=28
+
+section=general
+language=Korean Sign Language
+iso-code=kvk
+punctuation-chars=keep-list
+punctuation-chars-list=keep-all
+archive=no
+
+section=word-order
+word-order=sov
+has-dets=yes
+noun-det-order=det-noun
+has-aux=no
+
+section=number
+
+section=person
+person=1-2-3-4
+first-person=none
+
+section=gender
+
+section=case
+case-marking=none
+
+section=direct-inverse
+scale-equal=direct
+
+section=tense-aspect-mood
+
+section=other-features
+
+section=sentential-negation
+neg-exp=1
+vpc-0-neg=create
+
+section=coordination
+
+section=matrix-yes-no
+q-part=on
+q-part-order=after
+q-part-orth=Q
+
+section=info-str
+topic-first=on
+
+section=arg-opt
+
+section=lexicon
+  noun1_name=pro
+  noun1_det=imp
+  noun2_name=s-pro
+  noun2_supertypes=noun1
+  noun2_det=imp
+    noun2_stem1_orth=IXs
+    noun2_stem1_pred=_pronoun_n_rel
+  noun3_name=a-pro
+  noun3_supertypes=noun1
+  noun3_det=imp
+    noun3_stem1_orth=IXa
+    noun3_stem1_pred=_pronoun_n_rel
+  noun4_name=i-pro
+  noun4_supertypes=noun1
+  noun4_det=imp
+    noun4_stem1_orth=IXi
+    noun4_stem1_pred=_pronoun_n_rel
+  noun5_name=j-pro
+  noun5_supertypes=noun1
+  noun5_det=imp
+    noun5_stem1_orth=IXj
+    noun5_stem1_pred=_pronoun_n_rel
+  noun6_name=common
+  noun6_det=opt
+    noun6_stem1_orth=DOG
+    noun6_stem1_pred=_DOG_n_rel
+    noun6_stem2_orth=CAT
+    noun6_stem2_pred=_CAT_n_rel
+  verb1_name=plain
+  verb1_valence=trans
+    verb1_stem1_orth=LIKE
+    verb1_stem1_pred=_LIKE_v_rel
+  verb2_name=locus-agreement
+  verb2_valence=trans
+  verb3_name=spatial
+  verb3_valence=intrans
+    verb3_stem1_orth=WALK
+    verb3_stem1_pred=_WALK_v_rel
+  verb4_name=double-agr
+  verb4_supertypes=verb2
+  verb5_name=single-agr
+  verb5_supertypes=verb2
+  verb6_name=path-agr
+  verb6_supertypes=verb2
+  verb7_name=facing-agr
+  verb7_supertypes=verb2
+  verb8_name=path-forward-agr
+  verb8_supertypes=verb6
+  verb9_name=path-backward-agr
+  verb9_supertypes=verb6
+  verb10_name=facing-only-agr
+  verb10_supertypes=verb7
+  verb11_name=facing-path-forward-agr
+  verb11_supertypes=verb7
+  verb12_name=facing-path-backward-agr
+  verb12_supertypes=verb7
+  verb13_name=double-path-forward-agr-tr
+  verb13_supertypes=verb4, verb8
+    verb13_stem1_orth=GIVE
+    verb13_stem1_pred=_GIVE_v_rel
+  verb14_name=double-path-backward-agr-tr
+  verb14_supertypes=verb4, verb9
+    verb14_stem1_orth=BORROW
+    verb14_stem1_pred=_BORROW_v_rel
+  verb15_name=double-facing-only-agr-tr
+  verb15_supertypes=verb4, verb10
+    verb15_stem1_orth=HELP
+    verb15_stem1_pred=_HELP_v_rel
+    verb15_stem2_orth=TEACH
+    verb15_stem2_pred=_TEACH_v_rel
+    verb15_stem3_orth=THANK
+    verb15_stem3_pred=_THANK_v_rel
+  verb16_name=double-facing-path-forward-agr-tr
+  verb16_supertypes=verb4, verb11
+    verb16_stem1_orth=INSULT
+    verb16_stem1_pred=_INSULT_v_rel
+    verb16_stem2_orth=CHASE
+    verb16_stem2_pred=_CHASE_v_rel
+    verb16_stem3_orth=JOIN1
+    verb16_stem3_pred=_JOIN_v_rel
+  verb17_name=double-facing-path-backward-agr-tr
+  verb17_supertypes=verb4, verb12
+    verb17_stem1_orth=ENTICE
+    verb17_stem1_pred=_ENTICE_v_rel
+  verb18_name=single-path-forward-agr-tr
+  verb18_supertypes=verb5, verb8
+    verb18_stem1_orth=JOIN2
+    verb18_stem1_pred=_JOIN_v_rel
+  verb19_name=single-path-backward-agr-tr
+  verb19_supertypes=verb5, verb9
+  verb20_name=single-facing-only-agr-tr
+  verb20_supertypes=verb5, verb10
+    verb20_stem1_orth=SCOLD
+    verb20_stem1_pred=_SCOLD_v_rel
+  verb21_name=single-facing-path-forward-agr-tr
+  verb21_supertypes=verb5, verb11
+  verb22_name=single-facing-path-backward-agr-tr
+  verb22_supertypes=verb5, verb9
+  det1_name=s
+    det1_stem1_orth=IXs
+    det1_stem1_pred=exist_q_rel
+  det2_name=a
+    det2_stem1_orth=IXa
+    det2_stem1_pred=exist_q_rel
+  det3_name=i
+    det3_stem1_orth=IXi
+    det3_stem1_pred=exist_q_rel
+  det4_name=j
+    det4_stem1_orth=IXj
+    det4_stem1_pred=exist_q_rel
+
+section=morphology
+  verb-pc1_name=subject-agr
+  verb-pc1_obligatory=on
+  verb-pc1_order=prefix
+  verb-pc1_inputs=verb4
+    verb-pc1_lrt1_name=underspec-subject-agr
+      verb-pc1_lrt1_lri1_inflecting=yes
+      verb-pc1_lrt1_lri1_orth=s
+    verb-pc1_lrt2_name=spec-subject-agr
+    verb-pc1_lrt3_name=subject-agr-a
+    verb-pc1_lrt3_supertypes=verb-pc1_lrt2
+      verb-pc1_lrt3_lri1_inflecting=yes
+      verb-pc1_lrt3_lri1_orth=a
+    verb-pc1_lrt4_name=subject-agr-i
+    verb-pc1_lrt4_supertypes=verb-pc1_lrt2
+      verb-pc1_lrt4_lri1_inflecting=yes
+      verb-pc1_lrt4_lri1_orth=i
+    verb-pc1_lrt5_name=subject-agr-j
+    verb-pc1_lrt5_supertypes=verb-pc1_lrt2
+      verb-pc1_lrt5_lri1_inflecting=yes
+      verb-pc1_lrt5_lri1_orth=j
+  verb-pc2_name=object-agr
+  verb-pc2_obligatory=on
+  verb-pc2_order=suffix
+  verb-pc2_inputs=verb5, verb-pc1
+    verb-pc2_lrt1_name=object-agr-s
+      verb-pc2_lrt1_lri1_inflecting=yes
+      verb-pc2_lrt1_lri1_orth=s
+    verb-pc2_lrt2_name=object-agr-a
+      verb-pc2_lrt2_lri1_inflecting=yes
+      verb-pc2_lrt2_lri1_orth=a
+    verb-pc2_lrt3_name=object-agr-i
+      verb-pc2_lrt3_lri1_inflecting=yes
+      verb-pc2_lrt3_lri1_orth=i
+    verb-pc2_lrt4_name=object-agr-j
+      verb-pc2_lrt4_lri1_inflecting=yes
+      verb-pc2_lrt4_lri1_orth=j
+
+section=toolbox-import
+
+section=test-sentences
+
+section=gen-options
+
+section=ToolboxLexicon

@@ -1,0 +1,115 @@
+;;; -*- Mode: TDL; Coding: utf-8 -*-
+;;; Nouns
+
+IXs_1 := s-pro-noun-lex &
+  [ STEM < "IXs" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
+
+IXa_1 := a-pro-noun-lex &
+  [ STEM < "IXa" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
+
+IXi_1 := i-pro-noun-lex &
+  [ STEM < "IXi" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
+
+IXj_1 := j-pro-noun-lex &
+  [ STEM < "IXj" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_pronoun_n_rel" ].
+
+DOG := common-noun-lex &
+  [ STEM < "DOG" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_DOG_n_rel" ].
+
+CAT := common-noun-lex &
+  [ STEM < "CAT" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_CAT_n_rel" ].
+    
+chelswu := common-noun-lex &
+  [ STEM < "chelswu" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_chelswu_n_rel" ].
+    
+TEACHER := common-noun-lex &
+  [ STEM < "TEACHER" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_TEACHER_n_rel" ].
+
+STUDENT := common-noun-lex &
+  [ STEM < "STUDENT" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_STUDENT_n_rel" ].
+
+;;; Adjectives
+
+;;; Verbs
+
+LIKE := plain-verb-lex &
+  [ STEM < "LIKE" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_LIKE_v_rel" ].
+
+WALK := spatial-verb-lex &
+  [ STEM < "WALK" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_WALK_v_rel" ].
+
+GIVE := double-path-forward-agr-tr-verb-lex &
+  [ STEM < "GIVE" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_GIVE_v_rel" ].
+
+BORROW := double-path-backward-agr-tr-verb-lex &
+  [ STEM < "BORROW" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_BORROW_v_rel" ].
+
+HELP := double-facing-only-agr-tr-verb-lex &
+  [ STEM < "HELP" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_HELP_v_rel" ].
+
+TEACH := double-facing-only-agr-tr-verb-lex &
+  [ STEM < "TEACH" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_TEACH_v_rel" ].
+
+THANK := double-facing-only-agr-tr-verb-lex &
+  [ STEM < "THANK" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_THANK_v_rel" ].
+
+INSULT := double-facing-path-forward-agr-tr-verb-lex &
+  [ STEM < "INSULT" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_INSULT_v_rel" ].
+
+CHASE := double-facing-path-forward-agr-tr-verb-lex &
+  [ STEM < "CHASE" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_CHASE_v_rel" ].
+
+JOIN1 := double-facing-path-forward-agr-tr-verb-lex &
+  [ STEM < "JOIN1" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_JOIN_v_rel" ].
+
+ENTICE := double-facing-path-backward-agr-tr-verb-lex &
+  [ STEM < "ENTICE" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_ENTICE_v_rel" ].
+
+JOIN2 := single-path-forward-agr-tr-verb-lex &
+  [ STEM < "JOIN2" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_JOIN_v_rel" ].
+
+SCOLD := single-facing-only-agr-tr-verb-lex &
+  [ STEM < "SCOLD" >,
+    SYNSEM.LKEYS.KEYREL.PRED "_SCOLD_v_rel" ].
+
+;;; Determiners
+
+IXs_2 := s-determiner-lex &
+  [ STEM < "IXs" >,
+    SYNSEM.LKEYS.KEYREL.PRED "exist_q_rel" ].
+
+IXa_2 := a-determiner-lex &
+  [ STEM < "IXa" >,
+    SYNSEM.LKEYS.KEYREL.PRED "exist_q_rel" ].
+
+IXi_2 := i-determiner-lex &
+  [ STEM < "IXi" >,
+    SYNSEM.LKEYS.KEYREL.PRED "exist_q_rel" ].
+
+IXj_2 := j-determiner-lex &
+  [ STEM < "IXj" >,
+    SYNSEM.LKEYS.KEYREL.PRED "exist_q_rel" ].
+
+Q := qpart-lex-item &
+  [ STEM < "Q" > ].

@@ -1,0 +1,298 @@
+
+;;; -*- Mode: TDL; Coding: utf-8 -*-
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Grammar of Korean Sign Language
+;;; KSL add-on.tdl
+;;; created at:
+;;;     Tue Nov 10 17:32:54 UTC 2015
+;;; created by: Kim, YeonWoo
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+  
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Phon Structure
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+sign :+ [ PHON list ].
+
+;;; cheremes
+
+cheremes := avm &
+   [ HSHAPE list,
+     HORIEN list,
+     HLOCAT locus ].
+
+cheremes-f := cheremes &
+   [ FACING facing ].
+
+facing := avm &
+   [ TYPE facing-type,
+     FRONT locus,
+     BACK locus  ].
+
+facing-type := *top*.
+
+;;; hold-move-hold structure
+
+move-or-hold := avm.
+
+hold := move-or-hold &
+   [ NONMAN list,
+     DHAND cheremes,
+     NDHAND cheremes ].
+
+move := move-or-hold.
+
+single-syllable-sign := sign &
+   [ PHON [ FIRST hold,
+               REST [ FIRST move,
+                      REST [ FIRST hold,
+                             REST list ] ] ] ].
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Features
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;; locus value
+
+h-location := *top*.
+
+locus := h-location.
+
+non-s-loc := locus.
+non-a-loc := locus.
+non-i-loc := locus.
+non-j-loc := locus.
+
+s-loc := non-a-loc & non-i-loc & non-j-loc.
+a-loc := non-s-loc & non-i-loc & non-j-loc.
+i-loc := non-s-loc & non-a-loc & non-j-loc.
+j-loc := non-s-loc & non-a-loc & non-i-loc.
+
+;;; locus and loci
+
++nd :+
+   [ LOCUS locus ].
+
+png :+ 
+   [ PER locus ].
+
+noun-lex :+
+   [ SYNSEM.LOCAL [ CONT.HOOK.INDEX.PNG.PER #locus,
+                    CAT.HEAD.LOCUS #locus ] ].
+
+determiner-lex :+
+   [ SYNSEM.LOCAL [ CONT.HOOK.INDEX.PNG.PER #locus,
+                    CAT.HEAD.LOCUS #locus ] ].
+  
+loci := avm &
+   [ SLOCUS locus,
+     OLOCUS locus ].
+     
+verb :+
+   [ LOCUS-AGR bool ].
+
+locus-agr-verb := verb &
+   [ LOCUS-AGR + ,
+     LOCI loci ].
+     
+non-locus-agr-verb := verb &
+   [ LOCUS-AGR - ].
+
+locus-agreement-verb-lex :+ 
+   [ SYNSEM.LOCAL.CAT.HEAD locus-agr-verb ].
+   
+plain-verb-lex :+ 
+   [ SYNSEM.LOCAL.CAT.HEAD non-locus-agr-verb ].
+   
+spatial-verb-lex :+ 
+   [ SYNSEM.LOCAL.CAT.HEAD non-locus-agr-verb ].
+
+;;; locus specified?
+
+cat :+ 
+   [ LOCUS-SPEC bool ].
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Verb Types
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;; phon structure of locus agreement verb
+
+locus-agreement-verb-lex :+ single-syllable-sign.
+
+;;; locus value sharing
+
+facing-agr-verb-lex :+
+   [ PHON [ FIRST.DHAND.FACING [ FRONT #olocus,
+                                 BACK #slocus ],
+            REST.REST.FIRST.DHAND.FACING [ FRONT #olocus,
+                                           BACK #slocus ] ],
+     SYNSEM.LOCAL.CAT.HEAD.LOCI [ SLOCUS #slocus,
+                                  OLOCUS #olocus ] ].
+
+path-forward-agr-verb-lex :+
+   [ PHON [ FIRST.DHAND.HLOCAT #slocus,
+            REST.REST.FIRST.DHAND.HLOCAT #olocus ],
+     SYNSEM.LOCAL.CAT.HEAD.LOCI [ SLOCUS #slocus,
+                                  OLOCUS #olocus ] ].
+
+path-backward-agr-verb-lex :+
+   [ PHON [ FIRST.DHAND.HLOCAT #olocus,
+            REST.REST.FIRST.DHAND.HLOCAT #slocus ],
+     SYNSEM.LOCAL.CAT.HEAD.LOCI [ SLOCUS #slocus,
+                                  OLOCUS #olocus ] ].
+
+facing-only-agr-verb-lex :+
+   [ PHON [ FIRST.DHAND [ HLOCAT #olocus,
+                          FACING [ FRONT #olocus,
+                                   BACK #slocus ] ],
+   REST.REST.FIRST.DHAND [ HLOCAT #olocus,
+                           FACING [ FRONT #olocus,
+                                    BACK #slocus ] ] ] ].
+
+facing-path-forward-agr-verb-lex :+
+   [ PHON [ FIRST.DHAND [ HLOCAT #slocus,
+                          FACING [ FRONT #olocus,
+                                   BACK #slocus ] ],
+            REST.REST.FIRST.DHAND [ HLOCAT #olocus,
+                           FACING [ FRONT #olocus,
+                                    BACK #slocus ] ] ] ].
+
+facing-path-backward-agr-verb-lex :+
+   [ PHON [ FIRST.DHAND [ HLOCAT #olocus,
+                          FACING [ FRONT #olocus,
+                                   BACK #slocus ] ],
+            REST.REST.FIRST.DHAND [ HLOCAT #slocus,
+                           FACING [ FRONT #olocus,
+                                    BACK #slocus ] ] ] ].
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Noun, Determiner Types
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;; phon structure of IX and sample noun
+
+noun-lex :+ single-syllable-sign.
+
+determiner-lex :+ single-syllable-sign.
+
+;;; nouns, locus specified?
+
+common-noun-lex :+
+  [ SYNSEM.LOCAL.CAT.LOCUS-SPEC - ].
+
+pro-noun-lex :+
+  [ SYNSEM.LOCAL.CAT.LOCUS-SPEC + ].
+
+;;; pronominal, locus type
+
+s-pro-noun-lex :+
+  [ SYNSEM.LOCAL.CAT.HEAD.LOCUS s-loc ].
+
+a-pro-noun-lex :+
+  [ SYNSEM.LOCAL.CAT.HEAD.LOCUS a-loc ].
+
+i-pro-noun-lex :+
+  [ SYNSEM.LOCAL.CAT.HEAD.LOCUS i-loc ].
+
+j-pro-noun-lex :+
+  [ SYNSEM.LOCAL.CAT.HEAD.LOCUS j-loc ].
+
+;;; determiners, locus specified?
+
+determiner-lex :+
+  [ SYNSEM.LOCAL.CAT.LOCUS-SPEC + ].
+  
+;;; determiners, locus type
+
+s-determiner-lex :+
+  [ SYNSEM.LOCAL.CAT.HEAD.LOCUS s-loc ].
+
+a-determiner-lex :+
+  [ SYNSEM.LOCAL.CAT.HEAD.LOCUS a-loc ].
+
+i-determiner-lex :+
+  [ SYNSEM.LOCAL.CAT.HEAD.LOCUS i-loc ].
+
+j-determiner-lex :+
+  [ SYNSEM.LOCAL.CAT.HEAD.LOCUS j-loc ].
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Verb Lexical Rules
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;; phon structure of lex-rule
+
+infl-lex-rule :+
+  [ PHON #cher,
+    DTR.PHON #cher ].
+    
+;;; subject agreement lexical rule
+
+underspec-subject-agr-lex-rule :+
+  [ SYNSEM.LOCAL.CAT.HEAD.LOCI.SLOCUS s-loc ].
+
+subject-agr-a-lex-rule :+
+  [ SYNSEM.LOCAL.CAT  [ HEAD.LOCI.SLOCUS a-loc,
+                        VAL.SUBJ.FIRST.LOCAL.CAT.HEAD.LOCUS a-loc ] ].
+
+subject-agr-i-lex-rule :+
+  [ SYNSEM.LOCAL.CAT  [ HEAD.LOCI.SLOCUS i-loc,
+                        VAL.SUBJ.FIRST.LOCAL.CAT.HEAD.LOCUS i-loc ] ].
+
+subject-agr-j-lex-rule :+
+  [ SYNSEM.LOCAL.CAT  [ HEAD.LOCI.SLOCUS j-loc,
+                        VAL.SUBJ.FIRST.LOCAL.CAT.HEAD.LOCUS j-loc ] ].
+
+;;; object agreement lexical rule
+
+object-agr-s-lex-rule :+
+  [ SYNSEM.LOCAL.CAT [HEAD.LOCI [ OLOCUS s-loc,
+                                  SLOCUS non-s-loc ],
+                      VAL.COMPS.FIRST.LOCAL.CAT.HEAD.LOCUS s-loc ] ].
+
+object-agr-a-lex-rule :+ 
+  [ SYNSEM.LOCAL.CAT [HEAD.LOCI [ OLOCUS a-loc,
+                                  SLOCUS non-a-loc ],
+                      VAL.COMPS.FIRST.LOCAL.CAT.HEAD.LOCUS a-loc ] ].
+
+object-agr-i-lex-rule :+ 
+  [ SYNSEM.LOCAL.CAT [HEAD.LOCI [ OLOCUS i-loc,
+                                  SLOCUS non-i-loc ],
+                      VAL.COMPS.FIRST.LOCAL.CAT.HEAD.LOCUS i-loc ] ].
+
+object-agr-j-lex-rule :+ 
+  [ SYNSEM.LOCAL.CAT [HEAD.LOCI [ OLOCUS j-loc,
+                                  SLOCUS non-j-loc ],
+                      VAL.COMPS.FIRST.LOCAL.CAT.HEAD.LOCUS j-loc ] ].
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; Phrasal Types
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;;; phon structure of phrase
+
+basic-unary-phrase :+
+  [ PHON #cher,
+    ARGS < sign & [ PHON #cher ] > ].
+
+basic-head-final :+
+  [ PHON [FIRST #first, REST #rest],
+    ARGS < sign & [ PHON #first ], sign & [ PHON #rest ] > ].
+
+;;; NP locus-spec projection
+
+head-spec-phrase :+
+  [HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.LOCUS #locus,
+   NON-HEAD-DTR.SYNSEM.LOCAL.CAT.HEAD.LOCUS #locus] &
+  [SYNSEM.LOCAL.CAT.LOCUS-SPEC #locus-spec,
+   NON-HEAD-DTR.SYNSEM.LOCAL.CAT.LOCUS-SPEC #locus-spec].
+   
+bare-np-phrase :+
+  [SYNSEM.LOCAL.CAT.LOCUS-SPEC #locus-spec,
+   HEAD-DTR.SYNSEM.LOCAL.CAT.LOCUS-SPEC #locus-spec].
+
+;;; long-distance dependency
+
+infostr-filler-head-phrase :+
+ [ NON-HEAD-DTR.SYNSEM.LOCAL.CAT.LOCUS-SPEC + ].

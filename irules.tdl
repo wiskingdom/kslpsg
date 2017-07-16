@@ -1,0 +1,34 @@
+;;; -*- Mode: TDL; Coding: utf-8 -*-
+;;; Inflecting Lexical Rule Instances
+
+underspec-subject-agr-prefix :=
+%prefix (* s)
+underspec-subject-agr-lex-rule.
+
+subject-agr-a-prefix :=
+%prefix (* a)
+subject-agr-a-lex-rule.
+
+subject-agr-i-prefix :=
+%prefix (* i)
+subject-agr-i-lex-rule.
+
+subject-agr-j-prefix :=
+%prefix (* j)
+subject-agr-j-lex-rule.
+
+object-agr-s-suffix :=
+%suffix (* s)
+object-agr-s-lex-rule.
+
+object-agr-a-suffix :=
+%suffix (* a)
+object-agr-a-lex-rule.
+
+object-agr-i-suffix :=
+%suffix (* i)
+object-agr-i-lex-rule.
+
+object-agr-j-suffix :=
+%suffix (* j)
+object-agr-j-lex-rule.
