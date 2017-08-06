@@ -1,25 +1,26 @@
 ;;; -*- Mode: LISP; Syntax: Common-Lisp; Package: LKB; Coding: utf-8 -*-
 
+;;; (2017-07-21) Yeonwoo changed paths.
 ;;;
 ;;; First, load a number of LKB-specific settings; typically no need to look
 ;;; too closely here
 ;;;
-(lkb-load-lisp (parent-directory) "Version.lsp" t)
-(setf *grammar-directory* (parent-directory))
-(lkb-load-lisp (this-directory) "globals.lsp")
-(lkb-load-lisp (this-directory) "user-fns.lsp")
-(load-lkb-preferences (this-directory) "user-prefs.lsp")
+(lkb-load-lisp (this-directory) "matrix/Version.lsp" t)
+(setf *grammar-directory* "matrix")
+(lkb-load-lisp (this-directory) "matrix/lkb/globals.lsp")
+(lkb-load-lisp (this-directory) "matrix/lkb/user-fns.lsp")
+(load-lkb-preferences (this-directory) "matrix/lkb/user-prefs.lsp")
 
 ;;;
 ;;; vanilla.rpp file contains rules for tokenization
 ;;; see http://moin.delph-in.net/ReppTop for docs
-(read-repp (lkb-pathname (parent-directory) "repp/vanilla.rpp"))
+(read-repp (lkb-pathname (this-directory) "matrix/repp/vanilla.rpp"))
 (setf *repp-interactive* '(:vanilla))
 
 ;;;
 ;;; Optionally, load a set of irregular morphological patterns
 ;;;
-;(load-irregular-spellings (lkb-pathname (parent-directory) "irregs.tab"))
+;(load-irregular-spellings (lkb-pathname (this-directory) "matrix/irregs.tab"))
 
 ;;;
 ;;; Now the core grammar, which will typically be spread out
@@ -40,11 +41,11 @@
 ;;;
 (read-tdl-type-files-aux
 (list
-(lkb-pathname (parent-directory) "matrix.tdl")
-(lkb-pathname (parent-directory) "head-types.tdl")
-   (lkb-pathname (parent-directory) "korean sign language.tdl")
-   (lkb-pathname (parent-directory) "KSL add-on.tdl")
-(lkb-pathname (parent-directory) "mtr.tdl")
+(lkb-pathname (this-directory) "matrix/matrix.tdl")
+(lkb-pathname (this-directory) "matrix/head-types.tdl")
+   (lkb-pathname (this-directory) "korean sign language.tdl")
+   (lkb-pathname (this-directory) "KSL add-on.tdl")
+(lkb-pathname (this-directory) "matrix/mtr.tdl")
 ))
 
 ;;;
@@ -52,13 +53,13 @@
 ;;; (some grammars with larger lexica organize them into multiple files).
 ;;;
 
-(read-tdl-lex-file-aux (list (lkb-pathname (parent-directory) "lexicon.tdl")))
+(read-tdl-lex-file-aux (list (lkb-pathname (this-directory) "matrix/lexicon.tdl")))
 
 ;;; For grammars with small lexicons, no need to use a cache file:
 ;;; Once your lexicon has >1000 words or so, consider using the
 ;;; cache file:
 
-;(read-cached-lex-if-available (lkb-pathname (parent-directory) "lexicon.tdl"))
+;(read-cached-lex-if-available (lkb-pathname (this-directory) "matrix/lexicon.tdl"))
 
 ;;;
 ;;; Finally, the grammar rules, lexical rules (given special treatment in the
@@ -66,27 +67,27 @@
 ;;; `inflectional' rules themselves (rules with an associated orthographemic
 ;;; alternation of the surface string).
 ;;;
-(read-tdl-grammar-file-aux (lkb-pathname (parent-directory) "rules.tdl"))
-(read-tdl-lex-rule-file-aux (lkb-pathname (parent-directory) "lrules.tdl"))
-(read-morph-file-aux (lkb-pathname (parent-directory) "irules.tdl"))
+(read-tdl-grammar-file-aux (lkb-pathname (this-directory) "matrix/rules.tdl"))
+(read-tdl-lex-rule-file-aux (lkb-pathname (this-directory) "matrix/lrules.tdl"))
+(read-morph-file-aux (lkb-pathname (this-directory) "matrix/irules.tdl"))
 
 
 ;;;
 ;;; The `start symbol(s)' of the grammar.
 ;;;
-(read-tdl-psort-file-aux (lkb-pathname (parent-directory) "roots.tdl"))
+(read-tdl-psort-file-aux (lkb-pathname (this-directory) "matrix/roots.tdl"))
 
 ;;;
 ;;; Optionally, a set of types providing labels for nodes in parse trees
 ;;;
-(read-tdl-parse-node-file-aux (lkb-pathname (parent-directory) "labels.tdl"))
+(read-tdl-parse-node-file-aux (lkb-pathname (this-directory) "matrix/labels.tdl"))
 
 ;;;
 ;;; A few more LKB-specific settings, this time for MRS post-processing and
 ;;; generation; also, we always compute the generation index (while we have
 ;;; small lexica) in the hope that the generator will be used frequently.
 ;;;
-(lkb-load-lisp (this-directory) "mrsglobals.lsp" t)
+(lkb-load-lisp (this-directory) "matrix/lkb/mrsglobals.lsp" t)
 
 
 ;;;
@@ -103,9 +104,9 @@
 
 (index-for-generator)
 
-(mt:read-vpm (lkb-pathname (parent-directory) "semi.vpm") :semi)
+(mt:read-vpm (lkb-pathname (this-directory) "matrix/semi.vpm") :semi)
 
-(lkb-load-lisp (this-directory) "mt.lsp" t)
+(lkb-load-lisp (this-directory) "matrix/lkb/mt.lsp" t)
 
 
 ;;;
@@ -120,7 +121,7 @@
 
 (mt:read-transfer-rules
 (list
-(lkb-pathname (parent-directory) "trigger.mtr"))
+(lkb-pathname (this-directory) "matrix/trigger.mtr"))
 "Generation trigger rules"
 :filter nil :task :trigger :recurse nil :edges 200 :subsume nil)
 
